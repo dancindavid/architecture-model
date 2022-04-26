@@ -12,9 +12,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<artifactId>main-ejb</artifactId>
 	<packaging>ejb</packaging>
 	<properties>
-	<!--
+	
 		<wildfly.deployment.filename>${project.build.finalName}-jar-with-dependencies.jar</wildfly.deployment.filename>
-	-->
+	
 	</properties>
 	<dependencies></dependencies>
 	<build>
@@ -24,12 +24,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 			</plugin>
-			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 			</plugin>
-			-->
 		</plugins>
 	</build>
 
