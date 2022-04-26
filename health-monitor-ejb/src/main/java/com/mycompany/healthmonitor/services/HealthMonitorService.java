@@ -26,28 +26,29 @@ public class HealthMonitorService implements HealthMonitor {
 	@Override
 	public String getHealth() {
 		
-		String healthStatus = "";
-		try {
-			healthStatus = executeHttpRequestOnUBLBB();
-		} catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return healthStatus;
+		return executeHttpRequestOnUBLBB();
 	}
 
 	// create http request at ubl bb health check endpoint
-	private String executeHttpRequestOnUBLBB() throws IOException, InterruptedException {
+	private String executeHttpRequestOnUBLBB() {
 		HttpClient client = HttpClient.newHttpClient();
 
 		HttpRequest request = HttpRequest
 				.newBuilder(URI.create("http://localhost:7080/rest-api/api/health"))
 				.header("accept", "application/json").build();
 		
+		String retVal;
+		
+		try {
+			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
-		HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-
-		return response.statusCode() == 200 ? "Up" : "Down";
+			retVal = response.statusCode() == 200 ? "Up" : "Down";
+		}
+		catch(IOException | InterruptedException ex) {
+			retVal = "Down";
+		}
+		
+		
+		return retVal;
 	}
 }
