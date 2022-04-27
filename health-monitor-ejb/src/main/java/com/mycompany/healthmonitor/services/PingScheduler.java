@@ -35,7 +35,7 @@ public class PingScheduler {
 
 	@PostConstruct
 	private void init() {
-		scheduledFuture = scheduler.scheduleAtFixedRate(this::run, 0, 10, TimeUnit.SECONDS);
+		scheduledFuture = scheduler.scheduleAtFixedRate(this::run, 10, 10, TimeUnit.SECONDS);
 		//this.healthMonitor = healthMonitorSetup();
 	}
 	
