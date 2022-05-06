@@ -15,9 +15,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>com.mycompany</groupId>
 			<artifactId>health-monitor-ejb</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.0.1-SNAPSHOT</version>
 			<type>ejb-client</type>
 		</dependency>
 	</dependencies>
