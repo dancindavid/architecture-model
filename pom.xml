@@ -81,11 +81,7 @@
 	</modules>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>shared-domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.wildfly</groupId>
 			<artifactId>wildfly-ejb-client-bom</artifactId>

@@ -18,7 +18,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import com.mycompany.frontend.services.BlackBoxTester;
-import com.mycompany.healthmonitor.services.NewYorkWeather;
 import com.mycompany.mainejb.services.BlackBoxAlgorithmCaller;
 import com.mycompany.shareddomain.dtos.DeviceDto;
 import com.mycompany.shareddomain.dtos.ExecutionDto;

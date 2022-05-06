@@ -14,13 +14,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>health-monitor-ejb</artifactId>
-			<version>${project.parent.version}</version>
-			<type>ejb-client</type>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>main-ejb</artifactId>
 			<version>${project.parent.version}</version>
 			<type>ejb-client</type>

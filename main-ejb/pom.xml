@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-		
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>architecture-model</artifactId>
@@ -12,22 +10,31 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<artifactId>main-ejb</artifactId>
 	<packaging>ejb</packaging>
 	<properties>
-	
+		<!--
 		<wildfly.deployment.filename>${project.build.finalName}-jar-with-dependencies.jar</wildfly.deployment.filename>
-	
+	-->
 	</properties>
-	<dependencies></dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>com.mycompany</groupId>
+			<artifactId>shared-domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<finalName>main-ejb</finalName>
 		<plugins>
+	<!--
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 			</plugin>
+			-->
 		</plugins>
 	</build>
 

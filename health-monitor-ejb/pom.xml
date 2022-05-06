@@ -11,7 +11,13 @@
 	</parent>
 	<artifactId>health-monitor-ejb</artifactId>
 	<packaging>ejb</packaging>
-	<dependencies></dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>com.mycompany</groupId>
+			<artifactId>shared-domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<finalName>health-monitor-ejb</finalName>
 		<plugins>
