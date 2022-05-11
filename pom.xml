@@ -95,7 +95,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -117,6 +117,26 @@
 						<ejbVersion>3.2</ejbVersion>
 						<generateClient>true</generateClient>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>3.3.0</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>shade</goal>
+							</goals>
+							<configuration>
+								<artifactSet>
+									<includes>
+										<include>com.mycompany:shared-domain</include>
+									</includes>
+								</artifactSet>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

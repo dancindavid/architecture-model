@@ -17,7 +17,6 @@ import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 
 
 @Stateless
-@Remote(HealthMonitor.class)
 public class HealthMonitorService implements HealthMonitor {
 
 	@Resource

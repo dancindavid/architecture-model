@@ -1,15 +1,16 @@
 package com.mycompany.mainejb.services;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
+import javax.ejb.Remote;
+
 import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 
-
+@Remote
 public interface BlackBoxExecutionCaller {
 	Iterable<ExecutionDto> findAll() 
 			throws IOException, InterruptedException, ExecutionException;

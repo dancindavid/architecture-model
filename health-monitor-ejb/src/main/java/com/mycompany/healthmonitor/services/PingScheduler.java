@@ -45,8 +45,8 @@ public class PingScheduler {
 	}
 	
 	private void run() {
-		System.out.println(LocalDateTime.now());
-		System.out.println(healthMonitor.getHealth());
+//		System.out.println(LocalDateTime.now());
+//		System.out.println(healthMonitor.getHealth());
 	}
 
 	private static HealthMonitor healthMonitorSetup() throws NamingException {

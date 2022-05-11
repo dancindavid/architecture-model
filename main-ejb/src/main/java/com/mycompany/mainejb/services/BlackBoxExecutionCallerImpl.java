@@ -15,6 +15,7 @@ import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.ws.rs.WebApplicationException;
@@ -25,7 +26,6 @@ import com.mycompany.shareddomain.dtos.DeviceDto;
 import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 @Stateless
-@Local(BlackBoxExecutionCaller.class)
 public class BlackBoxExecutionCallerImpl implements BlackBoxExecutionCaller {
 	static final String baseString = "http://localhost:7080/rest-api/api/execution";
 	

@@ -14,6 +14,7 @@ import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
@@ -24,7 +25,6 @@ import com.mycompany.shareddomain.dtos.DeviceDto;
 import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 @Stateless
-@Local(BlackBoxAlgorithmCaller.class)
 public class BlackBoxAlgorithmCallerImpl implements BlackBoxAlgorithmCaller {
 	static final String baseString = "http://localhost:7080/rest-api/api/algorithm";
 

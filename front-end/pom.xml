@@ -14,10 +14,21 @@
 			<artifactId>main-ejb</artifactId>
 			<version>${project.parent.version}</version>
 			<type>ejb-client</type>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mycompany</groupId>
+			<artifactId>shared-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>26.1.0.Final</version>
+			<type>pom</type>
 		</dependency>
 
 	</dependencies>
