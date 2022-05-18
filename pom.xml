@@ -8,6 +8,49 @@
 	<name>Architecture Model</name>
 	<description>Model of Architecture</description>
 
+	<modules>
+		<module>main-ejb</module>
+		<module>health-monitor-ejb</module>
+		<module>front-end</module>
+		<module>java-client</module>
+		<module>architecture-model-ear</module>
+    <module>unshared-domain</module>
+  </modules>
+
+	<properties>
+		<java.version>11</java.version>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+
+		<!-- Explicitly declaring the source encoding eliminates the following 
+            message: -->
+		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+            resources, i.e. build is platform dependent! -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- JBoss dependency versions -->
+		<version.wildfly.maven.plugin>2.1.0.Final</version.wildfly.maven.plugin>
+
+		<!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
+		<version.jboss.bom>7.4.4.GA</version.jboss.bom>
+
+		<!-- other plugin versions -->
+		<version.compiler.plugin>3.10.1</version.compiler.plugin>
+		<version.assembly.plugin>3.3.0</version.assembly.plugin>
+		<version.shade.plugin>3.3.0</version.shade.plugin>
+		<version.ejb.plugin>3.2.1</version.ejb.plugin>
+		<version.war.plugin>3.3.2</version.war.plugin>
+		<version.ear.plugin>3.2.0</version.ear.plugin>
+
+		<version.jacksoncore>2.13.3</version.jacksoncore>
+		<version.blackbox>0.0.1-SNAPSHOT</version.blackbox>
+		<wildfly.port>9990</wildfly.port>
+		<version.lombok>1.18.24</version.lombok>
+		<version.javaee-api>8.0</version.javaee-api>
+
+	</properties>
+
 	<repositories>
 		<repository>
 			<snapshots>
@@ -18,7 +61,7 @@
 			<url>https://repo1.maven.org/maven2/</url>
 		</repository>
 		<repository>
-			<snapshots />
+			<snapshots/>
 			<id>snapshots</id>
 			<name>libs-snapshot</name>
 			<url>https://repo1.maven.org/maven2/</url>
@@ -47,7 +90,7 @@
 			<url>https://repo1.maven.org/maven2/</url>
 		</pluginRepository>
 		<pluginRepository>
-			<snapshots />
+			<snapshots/>
 			<id>snapshots</id>
 			<name>plugins-snapshot</name>
 			<url>https://repo1.maven.org/maven2/</url>
@@ -68,60 +111,82 @@
 	</pluginRepositories>
 
 
-	<properties>
-		<maven.compiler.release>11</maven.compiler.release>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<modules>
-		<module>main-ejb</module>
-		<module>health-monitor-ejb</module>
-		<module>front-end</module>
-		<module>java-client</module>
-	</modules>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.mycompany</groupId>
-				<artifactId>shared-domain</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
 				<groupId>javax</groupId>
 				<artifactId>javaee-api</artifactId>
-				<version>8.0</version>
+				<version>${version.javaee-api}</version>
 				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${version.jacksoncore}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.wildfly</groupId>
+				<artifactId>wildfly-naming-client</artifactId>
+				<version>1.0.15.Final</version>
+			</dependency>
+			<!-- JBoss distributes a complete set of Jakarta EE 8 APIs including
+                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
+                a collection) of artifacts. We use this here so that we always get the correct 
+                versions of artifacts. Here we use the wildfly-jakartaee-8.0-with-tools stack
+                (you can read this as the WildFly stack of the Jakarta EE 8 APIs -->
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-eap-jakartaee8</artifactId>
+				<version>${version.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${version.lombok}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.9.0</version>
+					<artifactId>maven-compiler-plugins</artifactId>
+					<version>${version.compiler.plugin}</version>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>3.3.2</version>
+					<version>${version.war.plugin}</version>
+					<configuration>
+						<!-- Jakarta EE doesn't require web.xml, Maven needs to catch up! -->
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-ejb-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>${version.ejb.plugin}</version>
 					<configuration>
 						<ejbVersion>3.2</ejbVersion>
 						<generateClient>true</generateClient>
 					</configuration>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
-					<version>3.3.0</version>
+					<version>${version.shade.plugin}</version>
 					<executions>
 						<execution>
 							<phase>package</phase>
@@ -138,16 +203,17 @@
 						</execution>
 					</executions>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>3.3.0</version>
+					<version>${version.assembly.plugin}</version>
 					<configuration>
 						<descriptorRefs>
 							<descriptorRef>jar-with-dependencies</descriptorRef>
 						</descriptorRefs>
 						<archive>
-							<manifest></manifest>
+							<manifest/>
 							<manifestEntries>
 								<Multi-Release>true</Multi-Release>
 							</manifestEntries>
@@ -162,10 +228,11 @@
 						</execution>
 					</executions>
 				</plugin>
+
 				<plugin>
 					<groupId>org.wildfly.plugins</groupId>
 					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>2.1.0.Final</version>
+					<version>${version.wildfly.maven.plugin}</version>
 					<executions>
 						<execution>
 							<id>undeploy</id>
@@ -174,6 +241,7 @@
 								<goal>undeploy</goal>
 							</goals>
 							<configuration>
+								<skip>false</skip>
 								<ignoreMissingDeployment>true</ignoreMissingDeployment>
 							</configuration>
 						</execution>

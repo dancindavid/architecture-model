@@ -1,28 +1,19 @@
 package com.mycompany.frontend.restresources;
 
-import java.util.Hashtable;
-import java.util.Optional;
-import java.util.Properties;
-
-import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import com.mycompany.frontend.services.BlackBoxTester;
 import com.mycompany.mainejb.services.BlackBoxAlgorithmCaller;
-import com.mycompany.shareddomain.dtos.DeviceDto;
-import com.mycompany.shareddomain.dtos.ExecutionDto;
-
-import javax.ws.rs.GET;
+import com.mycompany.unshareddomain.dtos.DeviceDto;
 
 
 @RequestScoped
@@ -36,7 +27,8 @@ public class AlgorithmResource {
 	@Inject
 	private BlackBoxTester blackBoxTester;
 	
-	private DeviceDto device = DeviceDto.builder().count(100000000).value(2).build();
+//	private DeviceDto device = DeviceDto.builder().count(100000000).value(2).build();
+	private DeviceDto device = DeviceDto.builder().count(1).value(2).build();
 	
 	
 	@GET

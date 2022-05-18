@@ -9,14 +9,13 @@
   <artifactId>main-ejb</artifactId>
   <packaging>ejb</packaging>
   <build>
-    <finalName>main-ejb</finalName>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
+        <artifactId>maven-ejb-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.wildfly.plugins</groupId>
-        <artifactId>wildfly-maven-plugin</artifactId>
+        <artifactId>maven-shade-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

@@ -1,14 +1,12 @@
 package com.mycompany.mainejb.services;
 
 import java.io.IOException;
-import java.util.Optional;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 
 import javax.ejb.Remote;
 
-import com.mycompany.shareddomain.dtos.DeviceDto;
-import com.mycompany.shareddomain.dtos.ExecutionDto;
+import com.mycompany.unshareddomain.dtos.DeviceDto;
+import com.mycompany.unshareddomain.dtos.ExecutionDto;
 
 
 @Remote

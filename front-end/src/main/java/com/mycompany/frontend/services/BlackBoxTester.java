@@ -23,16 +23,16 @@ import org.wildfly.naming.client.WildFlyInitialContextFactory;
 
 import com.mycompany.mainejb.services.BlackBoxAlgorithmCaller;
 import com.mycompany.mainejb.services.BlackBoxExecutionCaller;
-import com.mycompany.shareddomain.dtos.DeviceDto;
-import com.mycompany.shareddomain.dtos.ExecutionDto;
+import com.mycompany.unshareddomain.dtos.DeviceDto;
+import com.mycompany.unshareddomain.dtos.ExecutionDto;
 
 @Stateless
 public class BlackBoxTester {
 
-	@EJB(name = "ejb:/main-ejb/BlackBoxAlgorithmCallerImpl!com.mycompany.mainejb.services.BlackBoxAlgorithmCaller")
+	@EJB //(name = "ejb:/main-ejb/BlackBoxAlgorithmCallerImpl!com.mycompany.mainejb.services.BlackBoxAlgorithmCaller")
 	private BlackBoxAlgorithmCaller algorithmCaller;
 
-	@EJB(name = "ejb:/main-ejb/BlackBoxExecutionCallerImpl!com.mycompany.mainejb.services.BlackBoxExecutionCaller")
+	@EJB //(name = "ejb:/main-ejb/BlackBoxExecutionCallerImpl!com.mycompany.mainejb.services.BlackBoxExecutionCaller")
 	private BlackBoxExecutionCaller executionCaller;
 
 	@Resource

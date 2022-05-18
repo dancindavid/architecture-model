@@ -10,34 +10,33 @@
 	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
+			<groupId>com.mycompany</groupId>
+			<artifactId>unshared-domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>main-ejb</artifactId>
 			<version>${project.parent.version}</version>
 			<type>ejb-client</type>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>shared-domain</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.wildfly</groupId>
-			<artifactId>wildfly-ejb-client-bom</artifactId>
-			<version>26.1.0.Final</version>
-			<type>pom</type>
+			<artifactId>wildfly-naming-client</artifactId>
 		</dependency>
 
 	</dependencies>
 	<build>
-		<finalName>front-end</finalName>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

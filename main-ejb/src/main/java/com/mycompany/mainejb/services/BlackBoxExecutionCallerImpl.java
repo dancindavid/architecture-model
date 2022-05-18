@@ -22,8 +22,8 @@ import javax.ws.rs.WebApplicationException;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mycompany.shareddomain.dtos.DeviceDto;
-import com.mycompany.shareddomain.dtos.ExecutionDto;
+import com.mycompany.unshareddomain.dtos.DeviceDto;
+import com.mycompany.unshareddomain.dtos.ExecutionDto;
 
 @Stateless
 public class BlackBoxExecutionCallerImpl implements BlackBoxExecutionCaller {

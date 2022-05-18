@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.ejb.Remote;
 
-import com.mycompany.shareddomain.dtos.ExecutionDto;
+import com.mycompany.unshareddomain.dtos.ExecutionDto;
 
 
 @Remote
