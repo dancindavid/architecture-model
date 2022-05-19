@@ -3,13 +3,13 @@ package com.mycompany.mainejb.services;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
-import com.mycompany.unshareddomain.dtos.DeviceDto;
-import com.mycompany.unshareddomain.dtos.ExecutionDto;
+import com.mycompany.shareddomain.dtos.DeviceDto;
+import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 
-@Remote
+@Local
 public interface BlackBoxAlgorithmCaller {
 	ExecutionDto runManaged(String algorithmKey, DeviceDto device) 
 			throws IOException, InterruptedException, ExecutionException;

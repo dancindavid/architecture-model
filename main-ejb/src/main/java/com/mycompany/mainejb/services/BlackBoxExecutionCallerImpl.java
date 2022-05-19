@@ -22,26 +22,24 @@ import javax.ws.rs.WebApplicationException;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mycompany.unshareddomain.dtos.DeviceDto;
-import com.mycompany.unshareddomain.dtos.ExecutionDto;
+import com.mycompany.shareddomain.dtos.DeviceDto;
+import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 @Stateless
 public class BlackBoxExecutionCallerImpl implements BlackBoxExecutionCaller {
 	static final String baseString = "http://localhost:7080/rest-api/api/execution";
-	
+
 	@Resource
 	ManagedExecutorService executorService;
-	
+
 	@Override
-	public Iterable<ExecutionDto> findAll() 
-			throws IOException, InterruptedException, ExecutionException {
-		
+	public Iterable<ExecutionDto> findAll() throws IOException, InterruptedException, ExecutionException {
+
 		var mapper = new ObjectMapper();
 		var client = HttpClient.newHttpClient();
-		var request = HttpRequest.newBuilder(URI.create(baseString))
-				.header("Content-Type", "application/json")
-				.GET().build();
-		
+		var request = HttpRequest.newBuilder(URI.create(baseString)).header("Content-Type", "application/json").GET()
+				.build();
+
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 		if (response.statusCode() < 200 || response.statusCode() > 299) {
 			throw new WebApplicationException(response.statusCode());
@@ -49,48 +47,43 @@ public class BlackBoxExecutionCallerImpl implements BlackBoxExecutionCaller {
 
 		var body = response.body();
 
-		List<ExecutionDto> executions = mapper.readValue(body, new TypeReference<List<ExecutionDto>>(){});
+		List<ExecutionDto> executions = mapper.readValue(body, new TypeReference<List<ExecutionDto>>() {
+		});
 
-		return executions;		
+		return executions;
 	}
-	
+
 	@Override
-	public Optional<ExecutionDto> findById(UUID id) 
-			throws IOException, InterruptedException, ExecutionException {
+	public Optional<ExecutionDto> findById(UUID id) throws IOException, InterruptedException, ExecutionException {
 		var mapper = new ObjectMapper();
 		var client = HttpClient.newHttpClient();
-		var request = HttpRequest.newBuilder(
-				URI.create(String.format("%s/%s", baseString, id.toString())))
-				.header("Content-Type", "application/json")
-				.GET().build();
-		
-		
+		var request = HttpRequest.newBuilder(URI.create(String.format("%s/%s", baseString, id.toString())))
+				.header("Content-Type", "application/json").GET().build();
+
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-		
+
 		if (response.statusCode() < 200 || response.statusCode() > 299) {
 			throw new WebApplicationException(response.statusCode());
 		}
 
 		var body = response.body();
-		if(response.body().isBlank()) {
+		if (response.body().isBlank()) {
 			return Optional.empty();
 		}
-		
+
 		var execution = mapper.readValue(body, ExecutionDto.class);
 
-		return Optional.of(execution);		
+		return Optional.of(execution);
 	}
-	
+
 	@Override
 	public void deleteAll() throws IOException, InterruptedException {
 		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder(
-				URI.create(baseString + "/all"))
-				.header("Content-Type", "application/json")
-				.DELETE().build();
-		
+		HttpRequest request = HttpRequest.newBuilder(URI.create(baseString + "/all"))
+				.header("Content-Type", "application/json").DELETE().build();
+
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-		
+
 		if (response.statusCode() < 200 || response.statusCode() > 299) {
 			throw new WebApplicationException(response.statusCode());
 		}
@@ -119,5 +112,4 @@ public class BlackBoxExecutionCallerImpl implements BlackBoxExecutionCaller {
 //		return execution;		
 //	}
 
-	
 }

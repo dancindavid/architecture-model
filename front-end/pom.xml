@@ -10,12 +10,6 @@
 	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>unshared-domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>main-ejb</artifactId>
 			<version>${project.parent.version}</version>

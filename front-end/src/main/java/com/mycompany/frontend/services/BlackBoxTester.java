@@ -23,8 +23,8 @@ import org.wildfly.naming.client.WildFlyInitialContextFactory;
 
 import com.mycompany.mainejb.services.BlackBoxAlgorithmCaller;
 import com.mycompany.mainejb.services.BlackBoxExecutionCaller;
-import com.mycompany.unshareddomain.dtos.DeviceDto;
-import com.mycompany.unshareddomain.dtos.ExecutionDto;
+import com.mycompany.shareddomain.dtos.DeviceDto;
+import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 @Stateless
 public class BlackBoxTester {

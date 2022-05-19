@@ -23,7 +23,8 @@ import javax.naming.NamingException;
 @LocalBean
 public class PingScheduler {
 
-	private static final String jndiGlobalString = "ejb:/healthmonitor/HealthMonitorService!com.mycompany.healthmonitor.services.HealthMonitor";
+//	private static final String jndiGlobalString = "ejb:/healthmonitor/HealthMonitorService!com.mycompany.healthmonitor.services.HealthMonitor";
+	private static final String jndiGlobalString = "ejb:architecture-model/health-monitor-ejb/HealthMonitorService!com.mycompany.healthmonitor.services.HealthMonitor";
 
 	@EJB
 	private HealthMonitor healthMonitor;
@@ -45,7 +46,6 @@ public class PingScheduler {
 	}
 	
 	private void run() {
-//		System.out.println(LocalDateTime.now());
 //		System.out.println(healthMonitor.getHealth());
 	}
 

@@ -5,12 +5,12 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
-import com.mycompany.unshareddomain.dtos.ExecutionDto;
+import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 
-@Remote
+@Local
 public interface BlackBoxExecutionCaller {
 	Iterable<ExecutionDto> findAll() 
 			throws IOException, InterruptedException, ExecutionException;

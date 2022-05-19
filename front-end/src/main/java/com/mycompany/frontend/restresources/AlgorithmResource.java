@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 
 import com.mycompany.frontend.services.BlackBoxTester;
 import com.mycompany.mainejb.services.BlackBoxAlgorithmCaller;
-import com.mycompany.unshareddomain.dtos.DeviceDto;
+import com.mycompany.shareddomain.dtos.DeviceDto;
 
 
 @RequestScoped
@@ -27,8 +27,8 @@ public class AlgorithmResource {
 	@Inject
 	private BlackBoxTester blackBoxTester;
 	
-//	private DeviceDto device = DeviceDto.builder().count(100000000).value(2).build();
-	private DeviceDto device = DeviceDto.builder().count(1).value(2).build();
+	private DeviceDto device = DeviceDto.builder().count(100000000).value(2).build();
+//	private DeviceDto device = DeviceDto.builder().count(1).value(2).build();
 	
 	
 	@GET

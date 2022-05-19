@@ -13,7 +13,9 @@ import com.mycompany.healthmonitor.services.HealthMonitor;
 
 public class App {
 	
-	private static final String jndiString = "ejb:/health-monitor-ejb/HealthMonitorService!com.mycompany.healthmonitor.services.HealthMonitor";
+//	private static final String jndiString = "ejb:/health-monitor-ejb/HealthMonitorService!com.mycompany.healthmonitor.services.HealthMonitor";
+	private static final String jndiString = "ejb:architecture-model/health-monitor-ejb/HealthMonitorService!com.mycompany.healthmonitor.services.HealthMonitor";
+
 
 	public static void main(String[] args) throws NamingException {
 

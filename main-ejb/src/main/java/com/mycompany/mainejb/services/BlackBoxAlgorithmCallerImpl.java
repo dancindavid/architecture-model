@@ -21,8 +21,8 @@ import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mycompany.unshareddomain.dtos.DeviceDto;
-import com.mycompany.unshareddomain.dtos.ExecutionDto;
+import com.mycompany.shareddomain.dtos.DeviceDto;
+import com.mycompany.shareddomain.dtos.ExecutionDto;
 
 @Stateless
 public class BlackBoxAlgorithmCallerImpl implements BlackBoxAlgorithmCaller {

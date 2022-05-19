@@ -30,12 +30,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>unshared-domain</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>health-monitor-ejb</artifactId>
 			<version>${project.parent.version}</version>
@@ -47,12 +41,18 @@
 			<version>${project.parent.version}</version>
 			<type>ejb</type>
 		</dependency>
-
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>front-end</artifactId>
 			<version>${project.parent.version}</version>
 			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>shared-domain</artifactId>
+			<version>${version.blackbox}</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
