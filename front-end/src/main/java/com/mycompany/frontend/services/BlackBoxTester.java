@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -15,11 +14,6 @@ import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
-import org.wildfly.naming.client.WildFlyInitialContextFactory;
 
 import com.mycompany.mainejb.services.BlackBoxAlgorithmCaller;
 import com.mycompany.mainejb.services.BlackBoxExecutionCaller;
@@ -29,43 +23,14 @@ import com.mycompany.shareddomain.dtos.ExecutionDto;
 @Stateless
 public class BlackBoxTester {
 
-	@EJB //(name = "ejb:/main-ejb/BlackBoxAlgorithmCallerImpl!com.mycompany.mainejb.services.BlackBoxAlgorithmCaller")
+	@EJB 
 	private BlackBoxAlgorithmCaller algorithmCaller;
 
-	@EJB //(name = "ejb:/main-ejb/BlackBoxExecutionCallerImpl!com.mycompany.mainejb.services.BlackBoxExecutionCaller")
+	@EJB 
 	private BlackBoxExecutionCaller executionCaller;
 
 	@Resource
 	private ManagedExecutorService executorService;
-	
-//	public BlackBoxTester() throws NamingException {
-//		algorithmCaller = lookupAlgorithm();
-//		executionCaller = lookupExecution();
-//	}
-
-	private static BlackBoxAlgorithmCaller lookupAlgorithm() throws NamingException {
-		Properties jndiProperties = new Properties();
-		jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WildFlyInitialContextFactory.class.getName());
-		jndiProperties.put(Context.PROVIDER_URL, "remote+http://localhost:8080");
-	
-		final Context context = new InitialContext(jndiProperties);
-		
-		var jndiString = "ejb:/main-ejb/BlackBoxAlgorithmCallerImpl!com.mycompany.mainejb.services.BlackBoxAlgorithmCaller";
-
-		return (BlackBoxAlgorithmCaller) context.lookup(jndiString);
-	}
-
-	private static BlackBoxExecutionCaller lookupExecution() throws NamingException {
-			Properties jndiProperties = new Properties();
-			jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, WildFlyInitialContextFactory.class.getName());
-			jndiProperties.put(Context.PROVIDER_URL, "remote+http://localhost:8080");
-		
-			final Context context = new InitialContext(jndiProperties);
-			
-			var jndiString = "ejb:/main-ejb/BlackBoxExecutionCallerImpl!com.mycompany.mainejb.services.BlackBoxExecutionCaller";
-
-			return (BlackBoxExecutionCaller) context.lookup(jndiString);
-	}
 
 	public Long runManagedAlgorithmExecutions(String algorithmKey, DeviceDto device)
 			throws IOException, InterruptedException, ExecutionException {

@@ -124,11 +124,6 @@
 				<artifactId>jackson-databind</artifactId>
 				<version>${version.jacksoncore}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.wildfly</groupId>
-				<artifactId>wildfly-naming-client</artifactId>
-				<version>1.0.15.Final</version>
-			</dependency>
 			<!-- JBoss distributes a complete set of Jakarta EE 8 APIs including
                 a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or 
                 a collection) of artifacts. We use this here so that we always get the correct 

@@ -13,17 +13,12 @@
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>main-ejb</artifactId>
 			<version>${project.parent.version}</version>
-			<type>ejb-client</type>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.wildfly</groupId>
-			<artifactId>wildfly-naming-client</artifactId>
-		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>

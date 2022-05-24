@@ -12,14 +12,16 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>26.1.1.Final</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>health-monitor-ejb</artifactId>
 			<version>${project.parent.version}</version>
 			<type>ejb-client</type>
-		</dependency>
-		<dependency>
-			<groupId>org.wildfly</groupId>
-			<artifactId>wildfly-naming-client</artifactId>
 		</dependency>
 	</dependencies>
 
